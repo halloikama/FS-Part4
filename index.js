@@ -1,11 +1,11 @@
 const http = require('http')
-require('dotenv').config()
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
-var morgan = require('morgan')
+const morgan = require('morgan')
+const config = require('./utils/config')
 
 app.use(morgan('tiny'))
 
@@ -18,7 +18,7 @@ const blogSchema = mongoose.Schema({
 
 const Blog = mongoose.model('Blog', blogSchema)
 
-const mongoUrl = process.env.MONGODB_URI
+const mongoUrl = config.MONGODB_URI
 
 mongoose.connect(mongoUrl, { 
     useNewUrlParser: true,
@@ -45,7 +45,7 @@ app.post('/api/blogs', (request, response) => {
     })
 })
 
-const PORT = process.env.PORT
+const PORT = config.PORT
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
