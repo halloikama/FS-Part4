@@ -147,14 +147,7 @@ describe('Favourite Blog', () => {
             likes: 5,
             __v: 0
         },
-        {
-            _id: "5a422bc61b54a676234d17fc",
-            title: "Type wars",
-            author: "Robert C. Martin",
-            url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html",
-            likes: 5,
-            __v: 0
-        }
+      
     ]
 
     const listWithZeroBlog = []
