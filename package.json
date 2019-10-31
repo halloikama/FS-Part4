@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no tst specified\" && exit 1",
-    "watch": "nodemon index.js"
-
+    "watch": "nodemon index.js",
+    "test": "jest --verbose"
   },
   "repository": {
     "type": "git",
@@ -23,10 +22,15 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "lodash": "^4.17.15",
     "mongoose": "^5.7.5",
     "morgan": "^1.9.1"
   },
   "devDependencies": {
+    "jest": "^24.9.0",
     "nodemon": "^1.19.4"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
