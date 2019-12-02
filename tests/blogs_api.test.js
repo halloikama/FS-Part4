@@ -189,7 +189,7 @@ describe.only('when there is initially one user at db', () => {
 
   test('creation fails with proper statuscode and message if username already taken', async () => {
     const usersAtStart = await helper.usersInDb()
-    console.log(usersAtStart)
+    //console.log(usersAtStart)
 
     const newUser = {
       username: 'root',
@@ -209,22 +209,44 @@ describe.only('when there is initially one user at db', () => {
     expect(usersAtEnd.length).toBe(usersAtStart.length)
   })
 
-})
-/*
-describe.only('adding blogs with users', () => {
-  test('creation succeeds with a fresh username', async () => {
-    const newBlog = {
-      title: "React patterns",
-      author: "Michael Chan",
-      url: "https://reactpatterns.com/",
-      likes: 999,
-      userID: 
-    }
-  }
+  test('creation fails with a too short username', async () => {
+    const usersAtStart = await helper.usersInDb()
 
+    const newUser = {
+      username: 'ne',
+      name: 'shortname',
+      password: '123456',
+    }
+
+    await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(400)
+      .expect('Content-Type', /application\/json/)
+
+    const usersAtEnd = await helper.usersInDb()
+    expect(usersAtEnd.length).toBe(usersAtStart.length)
+  })
+
+  test('creation fails with a too short password', async () => {
+    const usersAtStart = await helper.usersInDb()
+
+    const newUser = {
+      username: 'neasdfc',
+      name: 'shortpassword',
+      password: '12',
+    }
+
+    await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(400)
+      .expect('Content-Type', /application\/json/)
+
+    const usersAtEnd = await helper.usersInDb()
+    expect(usersAtEnd.length).toBe(usersAtStart.length)
   })
 })
-*/
 
 afterAll(() => {
   mongoose.connection.close()
